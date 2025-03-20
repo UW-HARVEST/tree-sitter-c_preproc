@@ -95,6 +95,7 @@ module.exports = grammar({
       $._empty_declaration,
       $.preproc_if,
       $.preproc_ifdef,
+      $.preproc_ifndef,
       $.preproc_include,
       $.preproc_include_next,
       $.preproc_def,
@@ -117,6 +118,7 @@ module.exports = grammar({
       $._empty_declaration,
       $.preproc_if,
       $.preproc_ifdef,
+      $.preproc_ifndef,
       $.preproc_include,
       $.preproc_include_next,
       $.preproc_def,
@@ -742,6 +744,7 @@ module.exports = grammar({
         seq($.enumerator, ','),
         alias($.preproc_if_in_enumerator_list, $.preproc_if),
         alias($.preproc_ifdef_in_enumerator_list, $.preproc_ifdef),
+        alias($.preproc_ifndef_in_enumerator_list, $.preproc_ifndef),
         seq($.preproc_call, ','),
       )),
       optional(seq(
@@ -749,6 +752,7 @@ module.exports = grammar({
           $.enumerator,
           alias($.preproc_if_in_enumerator_list_no_comma, $.preproc_if),
           alias($.preproc_ifdef_in_enumerator_list_no_comma, $.preproc_ifdef),
+          alias($.preproc_ifndef_in_enumerator_list_no_comma, $.preproc_ifndef),
           $.preproc_call,
         ),
       )),
@@ -795,6 +799,7 @@ module.exports = grammar({
       $.preproc_call,
       alias($.preproc_if_in_field_declaration_list, $.preproc_if),
       alias($.preproc_ifdef_in_field_declaration_list, $.preproc_ifdef),
+      alias($.preproc_ifndef_in_field_declaration_list, $.preproc_ifndef),
     ),
 
     field_declaration: $ => seq(
@@ -1457,30 +1462,46 @@ function preprocIf(suffix, content, precedence = 0) {
       suffix ? alias($['preproc_else' + suffix], $.preproc_else) : $.preproc_else,
       suffix ? alias($['preproc_elif' + suffix], $.preproc_elif) : $.preproc_elif,
       suffix ? alias($['preproc_elifdef' + suffix], $.preproc_elifdef) : $.preproc_elifdef,
+      suffix ? alias($['preproc_elifndef' + suffix], $.preproc_elifndef) : $.preproc_elifndef,
     );
   }
 
   return {
-    ['preproc_if' + suffix]: $ => prec(precedence, seq(
+    ['preproc_if' + suffix]: $ => prec.left(precedence, seq(
       preprocessor('if'),
       field('condition', $.preproc_arg),
       '\n',
       field('body', repeat(content($))),
-      field('alternative', optional(alternativeBlock($))),
-      preprocessor('endif'),
+      choice(
+        field('alternative', alternativeBlock($)),
+        preprocessor('endif'),
+      ),
     )),
 
     ['preproc_ifdef' + suffix]: $ => prec(precedence, seq(
-      choice(preprocessor('ifdef'), preprocessor('ifndef')),
+      preprocessor('ifdef'),
       field('name', $.identifier),
       field('body', repeat(content($))),
-      field('alternative', optional(alternativeBlock($))),
-      preprocessor('endif'),
+      choice(
+        field('alternative', alternativeBlock($)),
+        preprocessor('endif'),
+      ),
+    )),
+
+    ['preproc_ifndef' + suffix]: $ => prec(precedence, seq(
+      preprocessor('ifndef'),
+      field('name', $.identifier),
+      field('body', repeat(content($))),
+      choice(
+        field('alternative', alternativeBlock($)),
+        preprocessor('endif'),
+      ),
     )),
 
     ['preproc_else' + suffix]: $ => prec(precedence, seq(
       preprocessor('else'),
       field('body', repeat(content($))),
+      preprocessor('endif'),
     )),
 
     ['preproc_elif' + suffix]: $ => prec(precedence, seq(
@@ -1488,14 +1509,30 @@ function preprocIf(suffix, content, precedence = 0) {
       field('condition', $.preproc_arg),
       '\n',
       field('body', repeat(content($))),
-      field('alternative', optional(alternativeBlock($))),
+      choice(
+        field('alternative', alternativeBlock($)),
+        preprocessor('endif'),
+      ),
     )),
 
     ['preproc_elifdef' + suffix]: $ => prec(precedence, seq(
-      choice(preprocessor('elifdef'), preprocessor('elifndef')),
+      preprocessor('elifdef'),
       field('name', $.identifier),
       field('body', repeat(content($))),
-      field('alternative', optional(alternativeBlock($))),
+      choice(
+        field('alternative', alternativeBlock($)),
+        preprocessor('endif'),
+      ),
+    )),
+
+    ['preproc_elifndef' + suffix]: $ => prec(precedence, seq(
+      preprocessor('elifndef'),
+      field('name', $.identifier),
+      field('body', repeat(content($))),
+      choice(
+        field('alternative', alternativeBlock($)),
+        preprocessor('endif'),
+      ),
     )),
   };
 }
