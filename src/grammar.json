@@ -3337,21 +3337,25 @@
               "type": "SEQ",
               "members": [
                 {
-                  "type": "CHOICE",
-                  "members": [
-                    {
-                      "type": "SYMBOL",
-                      "name": "_preproc_expression"
-                    },
-                    {
-                      "type": "SYMBOL",
-                      "name": "string_literal"
-                    },
-                    {
-                      "type": "SYMBOL",
-                      "name": "system_lib_string"
-                    }
-                  ]
+                  "type": "FIELD",
+                  "name": "argument",
+                  "content": {
+                    "type": "CHOICE",
+                    "members": [
+                      {
+                        "type": "SYMBOL",
+                        "name": "_preproc_expression"
+                      },
+                      {
+                        "type": "SYMBOL",
+                        "name": "string_literal"
+                      },
+                      {
+                        "type": "SYMBOL",
+                        "name": "system_lib_string"
+                      }
+                    ]
+                  }
                 },
                 {
                   "type": "REPEAT",
@@ -3363,21 +3367,25 @@
                         "value": ","
                       },
                       {
-                        "type": "CHOICE",
-                        "members": [
-                          {
-                            "type": "SYMBOL",
-                            "name": "_preproc_expression"
-                          },
-                          {
-                            "type": "SYMBOL",
-                            "name": "string_literal"
-                          },
-                          {
-                            "type": "SYMBOL",
-                            "name": "system_lib_string"
-                          }
-                        ]
+                        "type": "FIELD",
+                        "name": "argument",
+                        "content": {
+                          "type": "CHOICE",
+                          "members": [
+                            {
+                              "type": "SYMBOL",
+                              "name": "_preproc_expression"
+                            },
+                            {
+                              "type": "SYMBOL",
+                              "name": "string_literal"
+                            },
+                            {
+                              "type": "SYMBOL",
+                              "name": "system_lib_string"
+                            }
+                          ]
+                        }
                       }
                     ]
                   }

@@ -254,11 +254,14 @@ module.exports = grammar({
     preproc_argument_list: $ => seq(
       '(',
       commaSep(
-        choice(
-          $._preproc_expression,
-          $.string_literal,
-          $.system_lib_string
-        )
+        field(
+          'argument',
+          choice(
+            $._preproc_expression,
+            $.string_literal,
+            $.system_lib_string
+          ),
+        ),
       ),
       ')',
     ),
