@@ -206,7 +206,7 @@ module.exports = grammar({
 
     preproc_eval: $ => seq(
       preprocessor('eval'),
-      field('expression', $._preproc_expression),
+      field('expr', $._preproc_expression),
       token(/\r?\n/),
     ),
 

@@ -621,7 +621,7 @@
         },
         {
           "type": "FIELD",
-          "name": "expression",
+          "name": "expr",
           "content": {
             "type": "SYMBOL",
             "name": "_preproc_expression"
