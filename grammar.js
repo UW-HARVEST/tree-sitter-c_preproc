@@ -183,7 +183,14 @@ module.exports = grammar({
     ),
 
     preproc_params: $ => seq(
-      token.immediate('('), commaSep(choice($.identifier, '...')), ')',
+      token.immediate('('),
+      commaSep(
+        field(
+          'parameter',
+          choice($.identifier, $.variadic_parameter),
+        )
+      ),
+      ')',
     ),
 
     preproc_line: $ => seq(
@@ -232,13 +239,13 @@ module.exports = grammar({
 
     preproc_parenthesized_expression: $ => seq(
       '(',
-      $._preproc_expression,
+      field('expr', $._preproc_expression),
       ')',
     ),
 
     preproc_defined: $ => choice(
-      prec(PREC.CALL, seq('defined', '(', $.identifier, ')')),
-      seq('defined', $.identifier),
+      prec(PREC.CALL, seq('defined', '(', field('name', $.identifier), ')')),
+      seq('defined', field('name', $.identifier)),
     ),
 
     preproc_unary_expression: $ => prec.left(PREC.UNARY, seq(
@@ -1290,7 +1297,7 @@ module.exports = grammar({
 
     parenthesized_expression: $ => seq(
       '(',
-      choice($.expression, $.comma_expression, $.compound_statement),
+      field('expr', choice($.expression, $.comma_expression, $.compound_statement)),
       ')',
     ),
 
