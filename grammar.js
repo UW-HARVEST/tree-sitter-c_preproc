@@ -239,28 +239,26 @@ module.exports = grammar({
       alias($.preproc_conditional_expression, $.conditional_expression),
     ),
 
+    _preproc_tokens_head: $ => choice(
+      $.identifier,
+      alias($.preproc_call_expression, $.call_expression),
+      $.number_literal,
+      $.char_literal,
+      $.preproc_defined,
+      choice('!', '~', '-', '+'), // unary operators
+      seq('(', $.preproc_tokens, ')'), // parenthesized expression
+    ),
+
     preproc_tokens: $ => prec.left(field('token',
       seq(
-        choice(
-          $.identifier,
-          alias($.preproc_call_expression, $.call_expression),
-          $.number_literal,
-          $.char_literal,
-          $.preproc_defined,
-          choice('!', '~', '-', '+'), // unary operators
-          seq('(', $.preproc_tokens, ')'), // parenthesized expression
-        ),
+        $._preproc_tokens_head,
         repeat(
           choice(
-            $.identifier,
-            alias($.preproc_call_expression, $.call_expression),
-            $.number_literal,
-            $.char_literal,
-            $.preproc_defined,
-            choice('!', '~', '-', '+'), // unary operators
-            choice('+', '-', '*', '/', '%', '||', '&&', '|', '^', '&', '==', '!=', '>', '>=', '<=', '<', '<<', '>>', ','), // binary operators
-            seq('(', $.preproc_tokens, ')'), // parenthesized expression
-            choice('?', ':'), // conditional operator
+            $._preproc_tokens_head,
+            // binary operators that are not also unary operators
+            choice('*', '/', '%', '||', '&&', '|', '^', '&', '==', '!=', '>', '>=', '<=', '<', '<<', '>>', ','),
+            // conditional operator
+            choice('?', ':'),
           ),
         ),
       ),
