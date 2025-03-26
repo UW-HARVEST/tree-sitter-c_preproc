@@ -9,6 +9,7 @@
 
 const PREC = {
   PAREN_DECLARATOR: -10,
+  COMMA: -3,
   ASSIGNMENT: -2,
   CONDITIONAL: -1,
   DEFAULT: 0,
@@ -208,6 +209,7 @@ module.exports = grammar({
       preprocessor('eval'),
       field('expr', $._preproc_expression),
       token(/\r?\n/),
+      preprocessor('endeval'),
     ),
 
     preproc_call: $ => seq(
@@ -237,6 +239,33 @@ module.exports = grammar({
       alias($.preproc_conditional_expression, $.conditional_expression),
     ),
 
+    preproc_tokens: $ => prec.left(field('token',
+      seq(
+        choice(
+          $.identifier,
+          alias($.preproc_call_expression, $.call_expression),
+          $.number_literal,
+          $.char_literal,
+          $.preproc_defined,
+          choice('!', '~', '-', '+'), // unary operators
+          seq('(', $.preproc_tokens, ')'), // parenthesized expression
+        ),
+        repeat(
+          choice(
+            $.identifier,
+            alias($.preproc_call_expression, $.call_expression),
+            $.number_literal,
+            $.char_literal,
+            $.preproc_defined,
+            choice('!', '~', '-', '+'), // unary operators
+            choice('+', '-', '*', '/', '%', '||', '&&', '|', '^', '&', '==', '!=', '>', '>=', '<=', '<', '<<', '>>', ','), // binary operators
+            seq('(', $.preproc_tokens, ')'), // parenthesized expression
+            choice('?', ':'), // conditional operator
+          ),
+        ),
+      ),
+    )),
+
     preproc_parenthesized_expression: $ => seq(
       '(',
       field('expr', $._preproc_expression),
@@ -258,20 +287,20 @@ module.exports = grammar({
       field('arguments', alias($.preproc_argument_list, $.argument_list)),
     )),
 
-    preproc_argument_list: $ => seq(
+    preproc_argument_list: $ => prec(PREC.CALL, seq(
       '(',
       commaSep(
         field(
           'argument',
           choice(
-            $._preproc_expression,
+            $.preproc_tokens,
             $.string_literal,
             $.system_lib_string
           ),
         ),
       ),
       ')',
-    ),
+    )),
 
     preproc_binary_expression: $ => {
       const table = [
@@ -293,6 +322,7 @@ module.exports = grammar({
         ['<', PREC.RELATIONAL],
         ['<<', PREC.SHIFT],
         ['>>', PREC.SHIFT],
+        [',', PREC.COMMA],
       ];
 
       return choice(...table.map(([operator, precedence]) => {
@@ -1479,7 +1509,7 @@ function preprocIf(suffix, content, precedence = 0) {
   return {
     ['preproc_if' + suffix]: $ => prec.left(precedence, seq(
       preprocessor('if'),
-      field('condition', $.preproc_arg),
+      field('condition', $.preproc_tokens),
       '\n',
       field('body', repeat(content($))),
       choice(
@@ -1516,7 +1546,7 @@ function preprocIf(suffix, content, precedence = 0) {
 
     ['preproc_elif' + suffix]: $ => prec(precedence, seq(
       preprocessor('elif'),
-      field('condition', $.preproc_arg),
+      field('condition', $.preproc_tokens),
       '\n',
       field('body', repeat(content($))),
       choice(
