@@ -11,3 +11,5 @@ tree-sitter playground
 #else
     # error
 #endif
+
+tree-sitter generate --report-states-for-rule -
