@@ -188,6 +188,65 @@
     }
   },
   {
+    "type": "block_items",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "preproc_call",
+          "named": true
+        },
+        {
+          "type": "preproc_def",
+          "named": true
+        },
+        {
+          "type": "preproc_error",
+          "named": true
+        },
+        {
+          "type": "preproc_eval",
+          "named": true
+        },
+        {
+          "type": "preproc_function_def",
+          "named": true
+        },
+        {
+          "type": "preproc_if",
+          "named": true
+        },
+        {
+          "type": "preproc_ifdef",
+          "named": true
+        },
+        {
+          "type": "preproc_ifndef",
+          "named": true
+        },
+        {
+          "type": "preproc_include",
+          "named": true
+        },
+        {
+          "type": "preproc_include_next",
+          "named": true
+        },
+        {
+          "type": "preproc_line",
+          "named": true
+        },
+        {
+          "type": "preproc_undef",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "call_expression",
     "named": true,
     "fields": {
@@ -512,55 +571,11 @@
         ]
       },
       "body": {
-        "multiple": true,
+        "multiple": false,
         "required": false,
         "types": [
           {
-            "type": "preproc_call",
-            "named": true
-          },
-          {
-            "type": "preproc_def",
-            "named": true
-          },
-          {
-            "type": "preproc_error",
-            "named": true
-          },
-          {
-            "type": "preproc_eval",
-            "named": true
-          },
-          {
-            "type": "preproc_function_def",
-            "named": true
-          },
-          {
-            "type": "preproc_if",
-            "named": true
-          },
-          {
-            "type": "preproc_ifdef",
-            "named": true
-          },
-          {
-            "type": "preproc_ifndef",
-            "named": true
-          },
-          {
-            "type": "preproc_include",
-            "named": true
-          },
-          {
-            "type": "preproc_include_next",
-            "named": true
-          },
-          {
-            "type": "preproc_line",
-            "named": true
-          },
-          {
-            "type": "preproc_undef",
+            "type": "block_items",
             "named": true
           }
         ]
@@ -604,55 +619,11 @@
         ]
       },
       "body": {
-        "multiple": true,
+        "multiple": false,
         "required": false,
         "types": [
           {
-            "type": "preproc_call",
-            "named": true
-          },
-          {
-            "type": "preproc_def",
-            "named": true
-          },
-          {
-            "type": "preproc_error",
-            "named": true
-          },
-          {
-            "type": "preproc_eval",
-            "named": true
-          },
-          {
-            "type": "preproc_function_def",
-            "named": true
-          },
-          {
-            "type": "preproc_if",
-            "named": true
-          },
-          {
-            "type": "preproc_ifdef",
-            "named": true
-          },
-          {
-            "type": "preproc_ifndef",
-            "named": true
-          },
-          {
-            "type": "preproc_include",
-            "named": true
-          },
-          {
-            "type": "preproc_include_next",
-            "named": true
-          },
-          {
-            "type": "preproc_line",
-            "named": true
-          },
-          {
-            "type": "preproc_undef",
+            "type": "block_items",
             "named": true
           }
         ]
@@ -696,55 +667,11 @@
         ]
       },
       "body": {
-        "multiple": true,
+        "multiple": false,
         "required": false,
         "types": [
           {
-            "type": "preproc_call",
-            "named": true
-          },
-          {
-            "type": "preproc_def",
-            "named": true
-          },
-          {
-            "type": "preproc_error",
-            "named": true
-          },
-          {
-            "type": "preproc_eval",
-            "named": true
-          },
-          {
-            "type": "preproc_function_def",
-            "named": true
-          },
-          {
-            "type": "preproc_if",
-            "named": true
-          },
-          {
-            "type": "preproc_ifdef",
-            "named": true
-          },
-          {
-            "type": "preproc_ifndef",
-            "named": true
-          },
-          {
-            "type": "preproc_include",
-            "named": true
-          },
-          {
-            "type": "preproc_include_next",
-            "named": true
-          },
-          {
-            "type": "preproc_line",
-            "named": true
-          },
-          {
-            "type": "preproc_undef",
+            "type": "block_items",
             "named": true
           }
         ]
@@ -766,55 +693,11 @@
     "named": true,
     "fields": {
       "body": {
-        "multiple": true,
+        "multiple": false,
         "required": false,
         "types": [
           {
-            "type": "preproc_call",
-            "named": true
-          },
-          {
-            "type": "preproc_def",
-            "named": true
-          },
-          {
-            "type": "preproc_error",
-            "named": true
-          },
-          {
-            "type": "preproc_eval",
-            "named": true
-          },
-          {
-            "type": "preproc_function_def",
-            "named": true
-          },
-          {
-            "type": "preproc_if",
-            "named": true
-          },
-          {
-            "type": "preproc_ifdef",
-            "named": true
-          },
-          {
-            "type": "preproc_ifndef",
-            "named": true
-          },
-          {
-            "type": "preproc_include",
-            "named": true
-          },
-          {
-            "type": "preproc_include_next",
-            "named": true
-          },
-          {
-            "type": "preproc_line",
-            "named": true
-          },
-          {
-            "type": "preproc_undef",
+            "type": "block_items",
             "named": true
           }
         ]
@@ -948,55 +831,11 @@
         ]
       },
       "body": {
-        "multiple": true,
+        "multiple": false,
         "required": false,
         "types": [
           {
-            "type": "preproc_call",
-            "named": true
-          },
-          {
-            "type": "preproc_def",
-            "named": true
-          },
-          {
-            "type": "preproc_error",
-            "named": true
-          },
-          {
-            "type": "preproc_eval",
-            "named": true
-          },
-          {
-            "type": "preproc_function_def",
-            "named": true
-          },
-          {
-            "type": "preproc_if",
-            "named": true
-          },
-          {
-            "type": "preproc_ifdef",
-            "named": true
-          },
-          {
-            "type": "preproc_ifndef",
-            "named": true
-          },
-          {
-            "type": "preproc_include",
-            "named": true
-          },
-          {
-            "type": "preproc_include_next",
-            "named": true
-          },
-          {
-            "type": "preproc_line",
-            "named": true
-          },
-          {
-            "type": "preproc_undef",
+            "type": "block_items",
             "named": true
           }
         ]
@@ -1040,55 +879,11 @@
         ]
       },
       "body": {
-        "multiple": true,
+        "multiple": false,
         "required": false,
         "types": [
           {
-            "type": "preproc_call",
-            "named": true
-          },
-          {
-            "type": "preproc_def",
-            "named": true
-          },
-          {
-            "type": "preproc_error",
-            "named": true
-          },
-          {
-            "type": "preproc_eval",
-            "named": true
-          },
-          {
-            "type": "preproc_function_def",
-            "named": true
-          },
-          {
-            "type": "preproc_if",
-            "named": true
-          },
-          {
-            "type": "preproc_ifdef",
-            "named": true
-          },
-          {
-            "type": "preproc_ifndef",
-            "named": true
-          },
-          {
-            "type": "preproc_include",
-            "named": true
-          },
-          {
-            "type": "preproc_include_next",
-            "named": true
-          },
-          {
-            "type": "preproc_line",
-            "named": true
-          },
-          {
-            "type": "preproc_undef",
+            "type": "block_items",
             "named": true
           }
         ]
@@ -1132,55 +927,11 @@
         ]
       },
       "body": {
-        "multiple": true,
+        "multiple": false,
         "required": false,
         "types": [
           {
-            "type": "preproc_call",
-            "named": true
-          },
-          {
-            "type": "preproc_def",
-            "named": true
-          },
-          {
-            "type": "preproc_error",
-            "named": true
-          },
-          {
-            "type": "preproc_eval",
-            "named": true
-          },
-          {
-            "type": "preproc_function_def",
-            "named": true
-          },
-          {
-            "type": "preproc_if",
-            "named": true
-          },
-          {
-            "type": "preproc_ifdef",
-            "named": true
-          },
-          {
-            "type": "preproc_ifndef",
-            "named": true
-          },
-          {
-            "type": "preproc_include",
-            "named": true
-          },
-          {
-            "type": "preproc_include_next",
-            "named": true
-          },
-          {
-            "type": "preproc_line",
-            "named": true
-          },
-          {
-            "type": "preproc_undef",
+            "type": "block_items",
             "named": true
           }
         ]

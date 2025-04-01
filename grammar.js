@@ -8,11 +8,8 @@
 // @ts-check
 
 const PREC = {
-  PAREN_DECLARATOR: -10,
   COMMA: -3,
-  ASSIGNMENT: -2,
   CONDITIONAL: -1,
-  DEFAULT: 0,
   LOGICAL_OR: 1,
   LOGICAL_AND: 2,
   INCLUSIVE_OR: 3,
@@ -20,16 +17,11 @@ const PREC = {
   BITWISE_AND: 5,
   EQUAL: 6,
   RELATIONAL: 7,
-  OFFSETOF: 8,
   SHIFT: 9,
   ADD: 10,
   MULTIPLY: 11,
-  CAST: 12,
-  SIZEOF: 13,
   UNARY: 14,
   CALL: 15,
-  FIELD: 16,
-  SUBSCRIPT: 17,
 };
 
 module.exports = grammar({
@@ -75,6 +67,8 @@ module.exports = grammar({
       $.preproc_eval,
       $.preproc_call,
     ),
+
+    block_items: $ => repeat1($._block_item),
 
     // Preprocesser
 
@@ -166,7 +160,7 @@ module.exports = grammar({
       token(/\r?\n/),
     ),
 
-    ...preprocIf('', $ => $._block_item),
+    ...preprocIf('', $ => $.block_items),
 
     preproc_arg: _ => token(prec(-1, /\S([^/\n]|\/[^*]|\\\r?\n)*/)),
     preproc_directive: _ => /#[ \t]*[a-zA-Z]\w*/,
@@ -391,7 +385,7 @@ function preprocIf(suffix, content, precedence = 0) {
       preprocessor('if'),
       field('condition', $.preproc_tokens),
       '\n',
-      field('body', repeat(content($))),
+      optional(field('body', content($))),
       choice(
         field('alternative', alternativeBlock($)),
         preprocessor('endif'),
@@ -401,7 +395,7 @@ function preprocIf(suffix, content, precedence = 0) {
     ['preproc_ifdef' + suffix]: $ => prec(precedence, seq(
       preprocessor('ifdef'),
       field('name', $.identifier),
-      field('body', repeat(content($))),
+      optional(field('body', content($))),
       choice(
         field('alternative', alternativeBlock($)),
         preprocessor('endif'),
@@ -411,7 +405,7 @@ function preprocIf(suffix, content, precedence = 0) {
     ['preproc_ifndef' + suffix]: $ => prec(precedence, seq(
       preprocessor('ifndef'),
       field('name', $.identifier),
-      field('body', repeat(content($))),
+      optional(field('body', content($))),
       choice(
         field('alternative', alternativeBlock($)),
         preprocessor('endif'),
@@ -420,7 +414,7 @@ function preprocIf(suffix, content, precedence = 0) {
 
     ['preproc_else' + suffix]: $ => prec(precedence, seq(
       preprocessor('else'),
-      field('body', repeat(content($))),
+      optional(field('body', content($))),
       preprocessor('endif'),
     )),
 
@@ -428,7 +422,7 @@ function preprocIf(suffix, content, precedence = 0) {
       preprocessor('elif'),
       field('condition', $.preproc_tokens),
       '\n',
-      field('body', repeat(content($))),
+      optional(field('body', content($))),
       choice(
         field('alternative', alternativeBlock($)),
         preprocessor('endif'),
@@ -438,7 +432,7 @@ function preprocIf(suffix, content, precedence = 0) {
     ['preproc_elifdef' + suffix]: $ => prec(precedence, seq(
       preprocessor('elifdef'),
       field('name', $.identifier),
-      field('body', repeat(content($))),
+      optional(field('body', content($))),
       choice(
         field('alternative', alternativeBlock($)),
         preprocessor('endif'),
@@ -448,7 +442,7 @@ function preprocIf(suffix, content, precedence = 0) {
     ['preproc_elifndef' + suffix]: $ => prec(precedence, seq(
       preprocessor('elifndef'),
       field('name', $.identifier),
-      field('body', repeat(content($))),
+      optional(field('body', content($))),
       choice(
         field('alternative', alternativeBlock($)),
         preprocessor('endif'),
