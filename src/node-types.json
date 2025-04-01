@@ -490,14 +490,6 @@
           {
             "type": "preproc_tokens",
             "named": true
-          },
-          {
-            "type": "string_literal",
-            "named": true
-          },
-          {
-            "type": "system_lib_string",
-            "named": true
           }
         ]
       }
@@ -2792,7 +2784,7 @@
         "required": false,
         "types": [
           {
-            "type": "preproc_arg",
+            "type": "preproc_tokens",
             "named": true
           }
         ]
@@ -2814,6 +2806,11 @@
         ]
       }
     }
+  },
+  {
+    "type": "preproc_defined_literal",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "preproc_elif",
@@ -3404,7 +3401,7 @@
         "required": false,
         "types": [
           {
-            "type": "preproc_arg",
+            "type": "preproc_tokens",
             "named": true
           }
         ]
@@ -4016,10 +4013,6 @@
             "named": false
           },
           {
-            "type": "call_expression",
-            "named": true
-          },
-          {
             "type": "char_literal",
             "named": true
           },
@@ -4032,11 +4025,15 @@
             "named": true
           },
           {
-            "type": "preproc_defined",
+            "type": "preproc_defined_literal",
             "named": true
           },
           {
-            "type": "preproc_tokens",
+            "type": "string_literal",
+            "named": true
+          },
+          {
+            "type": "system_lib_string",
             "named": true
           },
           {

@@ -158,7 +158,7 @@ module.exports = grammar({
     preproc_def: $ => seq(
       preprocessor('define'),
       field('name', $.identifier),
-      field('value', optional($.preproc_arg)),
+      field('value', optional($.preproc_tokens)),
       token(/\r?\n/),
     ),
 
@@ -167,7 +167,7 @@ module.exports = grammar({
       field('name', $.identifier),
       field('parameters', $.preproc_params),
       token.immediate(/[ \t]*/),
-      field('value', optional($.preproc_arg)),
+      field('value', optional($.preproc_tokens)),
       token.immediate(/\r?\n/),
     ),
 
@@ -239,27 +239,21 @@ module.exports = grammar({
       alias($.preproc_conditional_expression, $.conditional_expression),
     ),
 
-    _preproc_tokens_head: $ => choice(
-      $.identifier,
-      alias($.preproc_call_expression, $.call_expression),
-      $.number_literal,
-      $.char_literal,
-      $.preproc_defined,
-      choice('!', '~', '-', '+'), // unary operators
-      seq('(', $.preproc_tokens, ')'), // parenthesized expression
-    ),
-
     preproc_tokens: $ => prec.left(field('token',
-      seq(
-        $._preproc_tokens_head,
-        repeat(
-          choice(
-            $._preproc_tokens_head,
-            // binary operators that are not also unary operators
-            choice('*', '/', '%', '||', '&&', '|', '^', '&', '==', '!=', '>', '>=', '<=', '<', '<<', '>>', ','),
-            // conditional operator
-            choice('?', ':'),
-          ),
+        repeat1(
+        choice(
+          $.identifier,
+          $.number_literal,
+          $.char_literal,
+          $.preproc_defined_literal,
+          choice('!', '~', '-', '+'), // unary operators
+          choice('(', ')'), // parenthesized expression
+          // binary operators that are not also unary operators
+          choice('*', '/', '%', '||', '&&', '|', '^', '&', '==', '!=', '>', '>=', '<=', '<', '<<', '>>', ','),
+          // conditional operator
+          choice('?', ':'),
+          $.string_literal,
+          $.system_lib_string,
         ),
       ),
     )),
@@ -274,6 +268,8 @@ module.exports = grammar({
       prec(PREC.CALL, seq('defined', '(', field('name', $.identifier), ')')),
       seq('defined', field('name', $.identifier)),
     ),
+
+    preproc_defined_literal: $ => 'defined',
 
     preproc_unary_expression: $ => prec.left(PREC.UNARY, seq(
       field('operator', choice('!', '~', '-', '+')),
@@ -290,11 +286,8 @@ module.exports = grammar({
       commaSep(
         field(
           'argument',
-          choice(
-            $.preproc_tokens,
-            $.string_literal,
-            $.system_lib_string
-          ),
+          // optional($.preproc_tokens),
+          $.preproc_tokens,
         ),
       ),
       ')',
