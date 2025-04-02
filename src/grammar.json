@@ -1691,7 +1691,7 @@
                     "name": "argument",
                     "content": {
                       "type": "SYMBOL",
-                      "name": "preproc_tokens"
+                      "name": "_preproc_expression"
                     }
                   },
                   {
@@ -1708,7 +1708,7 @@
                           "name": "argument",
                           "content": {
                             "type": "SYMBOL",
-                            "name": "preproc_tokens"
+                            "name": "_preproc_expression"
                           }
                         }
                       ]

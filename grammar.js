@@ -226,7 +226,7 @@ module.exports = grammar({
       commaSep(
         field(
           'argument',
-          $.preproc_tokens,
+          $._preproc_expression,
         ),
       ),
       ')',
