@@ -228,6 +228,10 @@
       "required": true,
       "types": [
         {
+          "type": "c_tokens",
+          "named": true
+        },
+        {
           "type": "preproc_call",
           "named": true
         },
@@ -276,6 +280,370 @@
           "named": true
         }
       ]
+    }
+  },
+  {
+    "type": "c_tokens",
+    "named": true,
+    "fields": {
+      "token": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "!",
+            "named": false
+          },
+          {
+            "type": "!=",
+            "named": false
+          },
+          {
+            "type": "#",
+            "named": false
+          },
+          {
+            "type": "##",
+            "named": false
+          },
+          {
+            "type": "%",
+            "named": false
+          },
+          {
+            "type": "%=",
+            "named": false
+          },
+          {
+            "type": "&",
+            "named": false
+          },
+          {
+            "type": "&&",
+            "named": false
+          },
+          {
+            "type": "&=",
+            "named": false
+          },
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "*",
+            "named": false
+          },
+          {
+            "type": "*=",
+            "named": false
+          },
+          {
+            "type": "+",
+            "named": false
+          },
+          {
+            "type": "+=",
+            "named": false
+          },
+          {
+            "type": ",",
+            "named": false
+          },
+          {
+            "type": "-",
+            "named": false
+          },
+          {
+            "type": "-=",
+            "named": false
+          },
+          {
+            "type": "->",
+            "named": false
+          },
+          {
+            "type": ".",
+            "named": false
+          },
+          {
+            "type": "...",
+            "named": false
+          },
+          {
+            "type": "/",
+            "named": false
+          },
+          {
+            "type": "/=",
+            "named": false
+          },
+          {
+            "type": ":",
+            "named": false
+          },
+          {
+            "type": "::",
+            "named": false
+          },
+          {
+            "type": ";",
+            "named": false
+          },
+          {
+            "type": "<",
+            "named": false
+          },
+          {
+            "type": "<<",
+            "named": false
+          },
+          {
+            "type": "<<=",
+            "named": false
+          },
+          {
+            "type": "<=",
+            "named": false
+          },
+          {
+            "type": "=",
+            "named": false
+          },
+          {
+            "type": "==",
+            "named": false
+          },
+          {
+            "type": ">",
+            "named": false
+          },
+          {
+            "type": ">=",
+            "named": false
+          },
+          {
+            "type": ">>",
+            "named": false
+          },
+          {
+            "type": ">>=",
+            "named": false
+          },
+          {
+            "type": "?",
+            "named": false
+          },
+          {
+            "type": "[",
+            "named": false
+          },
+          {
+            "type": "[[",
+            "named": false
+          },
+          {
+            "type": "]",
+            "named": false
+          },
+          {
+            "type": "]]",
+            "named": false
+          },
+          {
+            "type": "^",
+            "named": false
+          },
+          {
+            "type": "^=",
+            "named": false
+          },
+          {
+            "type": "auto",
+            "named": false
+          },
+          {
+            "type": "break",
+            "named": false
+          },
+          {
+            "type": "case",
+            "named": false
+          },
+          {
+            "type": "char",
+            "named": false
+          },
+          {
+            "type": "char_literal",
+            "named": true
+          },
+          {
+            "type": "comment",
+            "named": true
+          },
+          {
+            "type": "const",
+            "named": false
+          },
+          {
+            "type": "continue",
+            "named": false
+          },
+          {
+            "type": "default",
+            "named": false
+          },
+          {
+            "type": "do",
+            "named": false
+          },
+          {
+            "type": "double",
+            "named": false
+          },
+          {
+            "type": "else",
+            "named": false
+          },
+          {
+            "type": "enum",
+            "named": false
+          },
+          {
+            "type": "extern",
+            "named": false
+          },
+          {
+            "type": "float",
+            "named": false
+          },
+          {
+            "type": "for",
+            "named": false
+          },
+          {
+            "type": "goto",
+            "named": false
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "if",
+            "named": false
+          },
+          {
+            "type": "int",
+            "named": false
+          },
+          {
+            "type": "long",
+            "named": false
+          },
+          {
+            "type": "number_literal",
+            "named": true
+          },
+          {
+            "type": "preproc_defined_literal",
+            "named": true
+          },
+          {
+            "type": "register",
+            "named": false
+          },
+          {
+            "type": "return",
+            "named": false
+          },
+          {
+            "type": "short",
+            "named": false
+          },
+          {
+            "type": "signed",
+            "named": false
+          },
+          {
+            "type": "sizeof",
+            "named": false
+          },
+          {
+            "type": "static",
+            "named": false
+          },
+          {
+            "type": "string_literal",
+            "named": true
+          },
+          {
+            "type": "struct",
+            "named": false
+          },
+          {
+            "type": "switch",
+            "named": false
+          },
+          {
+            "type": "system_lib_string",
+            "named": true
+          },
+          {
+            "type": "typedef",
+            "named": false
+          },
+          {
+            "type": "union",
+            "named": false
+          },
+          {
+            "type": "unsigned",
+            "named": false
+          },
+          {
+            "type": "void",
+            "named": false
+          },
+          {
+            "type": "volatile",
+            "named": false
+          },
+          {
+            "type": "while",
+            "named": false
+          },
+          {
+            "type": "{",
+            "named": false
+          },
+          {
+            "type": "|",
+            "named": false
+          },
+          {
+            "type": "|=",
+            "named": false
+          },
+          {
+            "type": "||",
+            "named": false
+          },
+          {
+            "type": "}",
+            "named": false
+          },
+          {
+            "type": "~",
+            "named": false
+          }
+        ]
+      }
     }
   },
   {
@@ -1369,6 +1737,10 @@
       "required": false,
       "types": [
         {
+          "type": "c_tokens",
+          "named": true
+        },
+        {
           "type": "preproc_call",
           "named": true
         },
@@ -1759,6 +2131,22 @@
     "named": false
   },
   {
+    "type": "auto",
+    "named": false
+  },
+  {
+    "type": "break",
+    "named": false
+  },
+  {
+    "type": "case",
+    "named": false
+  },
+  {
+    "type": "char",
+    "named": false
+  },
+  {
     "type": "character",
     "named": true
   },
@@ -1768,7 +2156,35 @@
     "extra": true
   },
   {
+    "type": "const",
+    "named": false
+  },
+  {
+    "type": "continue",
+    "named": false
+  },
+  {
+    "type": "default",
+    "named": false
+  },
+  {
     "type": "defined",
+    "named": false
+  },
+  {
+    "type": "do",
+    "named": false
+  },
+  {
+    "type": "double",
+    "named": false
+  },
+  {
+    "type": "else",
+    "named": false
+  },
+  {
+    "type": "enum",
     "named": false
   },
   {
@@ -1776,8 +2192,36 @@
     "named": true
   },
   {
+    "type": "extern",
+    "named": false
+  },
+  {
+    "type": "float",
+    "named": false
+  },
+  {
+    "type": "for",
+    "named": false
+  },
+  {
+    "type": "goto",
+    "named": false
+  },
+  {
     "type": "identifier",
     "named": true
+  },
+  {
+    "type": "if",
+    "named": false
+  },
+  {
+    "type": "int",
+    "named": false
+  },
+  {
+    "type": "long",
+    "named": false
   },
   {
     "type": "number_literal",
@@ -1792,12 +2236,48 @@
     "named": true
   },
   {
+    "type": "register",
+    "named": false
+  },
+  {
+    "type": "return",
+    "named": false
+  },
+  {
+    "type": "short",
+    "named": false
+  },
+  {
+    "type": "signed",
+    "named": false
+  },
+  {
+    "type": "sizeof",
+    "named": false
+  },
+  {
+    "type": "static",
+    "named": false
+  },
+  {
     "type": "string_content",
     "named": true
   },
   {
+    "type": "struct",
+    "named": false
+  },
+  {
+    "type": "switch",
+    "named": false
+  },
+  {
     "type": "system_lib_string",
     "named": true
+  },
+  {
+    "type": "typedef",
+    "named": false
   },
   {
     "type": "u\"",
@@ -1813,6 +2293,26 @@
   },
   {
     "type": "u8'",
+    "named": false
+  },
+  {
+    "type": "union",
+    "named": false
+  },
+  {
+    "type": "unsigned",
+    "named": false
+  },
+  {
+    "type": "void",
+    "named": false
+  },
+  {
+    "type": "volatile",
+    "named": false
+  },
+  {
+    "type": "while",
     "named": false
   },
   {

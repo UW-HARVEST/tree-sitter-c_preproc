@@ -35,23 +35,7 @@ module.exports = grammar({
   word: $ => $.identifier,
 
   rules: {
-    translation_unit: $ => repeat($._top_level_item),
-
-    // Top level items are block items with the exception of the expression statement
-    _top_level_item: $ => choice(
-      $.preproc_if,
-      $.preproc_ifdef,
-      $.preproc_ifndef,
-      $.preproc_include,
-      $.preproc_include_next,
-      $.preproc_def,
-      $.preproc_function_def,
-      $.preproc_undef,
-      $.preproc_error,
-      $.preproc_line,
-      $.preproc_eval,
-      $.preproc_call,
-    ),
+    translation_unit: $ => repeat($._block_item),
 
     _block_item: $ => choice(
       $.preproc_if,
@@ -66,6 +50,7 @@ module.exports = grammar({
       $.preproc_line,
       $.preproc_eval,
       $.preproc_call,
+      $.c_tokens,
     ),
 
     block_items: $ => repeat1($._block_item),
@@ -177,26 +162,50 @@ module.exports = grammar({
       alias($.preproc_conditional_expression, $.conditional_expression),
     ),
 
-    preproc_tokens: $ => prec.left(field('token',
-        repeat1(
-        choice(
-          $.identifier,
-          $.number_literal,
-          $.char_literal,
-          $.preproc_defined_literal,
-          choice('!', '~', '-', '+'), // unary operators
-          choice('(', ')', '{', '}', '[', ']'), // parentheses
-          // preprocessor binary operators that are not also unary operators
-          choice('*', '/', '%', '||', '&&', '|', '^', '&', '==', '!=', '>', '>=', '<=', '<', '<<', '>>', ','),
-          choice('?', ':'),
-          $.string_literal,
-          $.system_lib_string,
-          choice('##', '#'),
-          choice('=', '*=', '/=', '%=', '+=', '-=', '<<=', '>>=', '&=', '^=', '|='), // other C operators
-          choice(';', '...', '.', '->', '::', '[[', ']]'), // other C operators
-        ),
+    preproc_tokens: $ => $._preproc_tokens,
+
+    _preproc_tokens: $ => prec.left(field('token',
+      repeat1(
+        $._preproc_token,
+    ),
+  )),
+
+    _preproc_token: $ => choice(
+      $.identifier,
+      $.number_literal,
+      $.char_literal,
+      $.preproc_defined_literal,
+      choice('!', '~', '-', '+'), // unary operators
+      choice('(', ')', '{', '}', '[', ']'), // parentheses
+      // preprocessor binary operators that are not also unary operators
+      choice('*', '/', '%', '||', '&&', '|', '^', '&', '==', '!=', '>', '>=', '<=', '<', '<<', '>>', ','),
+      choice('?', ':'),
+      $.string_literal,
+      $.system_lib_string,
+      choice('##', '#'),
+      choice('=', '*=', '/=', '%=', '+=', '-=', '<<=', '>>=', '&=', '^=', '|='), // other C operators
+      choice(';', '...', '.', '->', '::', '[[', ']]'), // other C operators
+    ),
+
+    c_tokens: $ => prec.right(field('token',
+      repeat1(
+        $._c_token,
       ),
     )),
+
+    _c_token: $ => choice(
+      $._preproc_token,
+      $.comment,
+      choice(
+        'auto', 'break', 'case', 'char', 'const',
+        'continue', 'default', 'do', 'double', 'else',
+        'enum', 'extern', 'float', 'for', 'if',
+        'int', 'long', 'register', 'return', 'short',
+        'signed', 'sizeof', 'static', 'struct', 'switch',
+        'typedef', 'union', 'unsigned', 'void', 'goto',
+        'volatile', 'while',
+      )
+    ),
 
     preproc_parenthesized_expression: $ => seq(
       '(',
