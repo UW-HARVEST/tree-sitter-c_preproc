@@ -156,6 +156,8 @@ module.exports = grammar({
       $.number_literal,
       $.char_literal,
       $.preproc_defined,
+      $.string_literal,
+      $.system_lib_string,
       alias($.preproc_unary_expression, $.unary_expression),
       alias($.preproc_binary_expression, $.binary_expression),
       alias($.preproc_parenthesized_expression, $.parenthesized_expression),

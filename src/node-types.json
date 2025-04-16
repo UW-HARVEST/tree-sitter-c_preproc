@@ -40,6 +40,14 @@
             "named": true
           },
           {
+            "type": "string_literal",
+            "named": true
+          },
+          {
+            "type": "system_lib_string",
+            "named": true
+          },
+          {
             "type": "unary_expression",
             "named": true
           }
@@ -85,6 +93,14 @@
           },
           {
             "type": "preproc_defined",
+            "named": true
+          },
+          {
+            "type": "string_literal",
+            "named": true
+          },
+          {
+            "type": "system_lib_string",
             "named": true
           },
           {
@@ -209,6 +225,14 @@
           },
           {
             "type": "preproc_defined",
+            "named": true
+          },
+          {
+            "type": "string_literal",
+            "named": true
+          },
+          {
+            "type": "system_lib_string",
             "named": true
           },
           {
@@ -728,6 +752,14 @@
             "named": true
           },
           {
+            "type": "string_literal",
+            "named": true
+          },
+          {
+            "type": "system_lib_string",
+            "named": true
+          },
+          {
             "type": "unary_expression",
             "named": true
           }
@@ -770,6 +802,14 @@
             "named": true
           },
           {
+            "type": "string_literal",
+            "named": true
+          },
+          {
+            "type": "system_lib_string",
+            "named": true
+          },
+          {
             "type": "unary_expression",
             "named": true
           }
@@ -809,6 +849,14 @@
           },
           {
             "type": "preproc_defined",
+            "named": true
+          },
+          {
+            "type": "string_literal",
+            "named": true
+          },
+          {
+            "type": "system_lib_string",
             "named": true
           },
           {
@@ -857,6 +905,14 @@
           },
           {
             "type": "preproc_defined",
+            "named": true
+          },
+          {
+            "type": "string_literal",
+            "named": true
+          },
+          {
+            "type": "system_lib_string",
             "named": true
           },
           {
@@ -1154,6 +1210,14 @@
           },
           {
             "type": "preproc_defined",
+            "named": true
+          },
+          {
+            "type": "string_literal",
+            "named": true
+          },
+          {
+            "type": "system_lib_string",
             "named": true
           },
           {
@@ -1834,6 +1898,14 @@
           },
           {
             "type": "preproc_defined",
+            "named": true
+          },
+          {
+            "type": "string_literal",
+            "named": true
+          },
+          {
+            "type": "system_lib_string",
             "named": true
           },
           {

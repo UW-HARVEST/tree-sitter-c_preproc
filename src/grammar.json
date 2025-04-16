@@ -1165,6 +1165,14 @@
           "name": "preproc_defined"
         },
         {
+          "type": "SYMBOL",
+          "name": "string_literal"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "system_lib_string"
+        },
+        {
           "type": "ALIAS",
           "content": {
             "type": "SYMBOL",
