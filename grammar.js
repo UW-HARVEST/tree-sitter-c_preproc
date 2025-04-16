@@ -324,10 +324,7 @@ module.exports = grammar({
 
     string_literal: $ => seq(
       choice('L"', 'u"', 'U"', 'u8"', '"'),
-      repeat(choice(
-        alias(token.immediate(prec(1, /[^\\"\n]+/)), $.string_content),
-        $.escape_sequence,
-      )),
+      field('content', alias(token.immediate(prec(1, /[^\\"\n]+/)), $.string_content)),
       '"',
     ),
 
@@ -342,11 +339,11 @@ module.exports = grammar({
       ),
     ))),
 
-    system_lib_string: _ => token(seq(
+    system_lib_string: $ => seq(
       '<',
-      repeat(choice(/[^>\n]/, '\\>')),
+      field('content', alias(token.immediate(prec(1, /[^\\"\n>]+/)), $.string_content)),
       '>',
-    )),
+    ),
 
     identifier: _ =>
       /(\p{XID_Start}|\$|_|\\u[0-9A-Fa-f]{4}|\\U[0-9A-Fa-f]{8})(\p{XID_Continue}|\$|\\u[0-9A-Fa-f]{4}|\\U[0-9A-Fa-f]{8})*/,

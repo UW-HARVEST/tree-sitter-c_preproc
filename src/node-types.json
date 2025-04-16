@@ -1711,20 +1711,33 @@
   {
     "type": "string_literal",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "escape_sequence",
-          "named": true
-        },
-        {
-          "type": "string_content",
-          "named": true
-        }
-      ]
+    "fields": {
+      "content": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "string_content",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "system_lib_string",
+    "named": true,
+    "fields": {
+      "content": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "string_content",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -2270,10 +2283,6 @@
   {
     "type": "switch",
     "named": false
-  },
-  {
-    "type": "system_lib_string",
-    "named": true
   },
   {
     "type": "typedef",
