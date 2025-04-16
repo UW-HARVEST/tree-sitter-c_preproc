@@ -1381,10 +1381,6 @@
           "name": "string_literal"
         },
         {
-          "type": "SYMBOL",
-          "name": "system_lib_string"
-        },
-        {
           "type": "CHOICE",
           "members": [
             {
@@ -2956,24 +2952,32 @@
           ]
         },
         {
-          "type": "FIELD",
-          "name": "content",
-          "content": {
-            "type": "ALIAS",
-            "content": {
-              "type": "IMMEDIATE_TOKEN",
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "FIELD",
+              "name": "content",
               "content": {
-                "type": "PREC",
-                "value": 1,
+                "type": "ALIAS",
                 "content": {
-                  "type": "PATTERN",
-                  "value": "[^\\\\\"\\n]+"
-                }
+                  "type": "IMMEDIATE_TOKEN",
+                  "content": {
+                    "type": "PREC",
+                    "value": 1,
+                    "content": {
+                      "type": "PATTERN",
+                      "value": "[^\\\\\"\\n]+"
+                    }
+                  }
+                },
+                "named": true,
+                "value": "string_content"
               }
             },
-            "named": true,
-            "value": "string_content"
-          }
+            {
+              "type": "BLANK"
+            }
+          ]
         },
         {
           "type": "STRING",

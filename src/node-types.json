@@ -591,10 +591,6 @@
             "named": false
           },
           {
-            "type": "system_lib_string",
-            "named": true
-          },
-          {
             "type": "typedef",
             "named": false
           },
@@ -1661,10 +1657,6 @@
             "named": true
           },
           {
-            "type": "system_lib_string",
-            "named": true
-          },
-          {
             "type": "{",
             "named": false
           },
@@ -1714,7 +1706,7 @@
     "fields": {
       "content": {
         "multiple": false,
-        "required": true,
+        "required": false,
         "types": [
           {
             "type": "string_content",

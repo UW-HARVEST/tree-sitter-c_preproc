@@ -181,7 +181,6 @@ module.exports = grammar({
       choice('*', '/', '%', '||', '&&', '|', '^', '&', '==', '!=', '>', '>=', '<=', '<', '<<', '>>', ','),
       choice('?', ':'),
       $.string_literal,
-      $.system_lib_string,
       choice('##', '#'),
       choice('=', '*=', '/=', '%=', '+=', '-=', '<<=', '>>=', '&=', '^=', '|='), // other C operators
       choice(';', '...', '.', '->', '::', '[[', ']]'), // other C operators
@@ -324,7 +323,7 @@ module.exports = grammar({
 
     string_literal: $ => seq(
       choice('L"', 'u"', 'U"', 'u8"', '"'),
-      field('content', alias(token.immediate(prec(1, /[^\\"\n]+/)), $.string_content)),
+      optional(field('content', alias(token.immediate(prec(1, /[^\\"\n]+/)), $.string_content))),
       '"',
     ),
 
