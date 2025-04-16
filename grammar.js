@@ -141,7 +141,7 @@ module.exports = grammar({
     preproc_call: $ => seq(
       field('directive', $.preproc_directive),
       optional(token.immediate(/[ \t]*/)),
-      field('argument', optional($.preproc_arg)),
+      field('argument', optional($.preproc_tokens)),
       token(/\r?\n/),
     ),
 

@@ -567,7 +567,7 @@
             "members": [
               {
                 "type": "SYMBOL",
-                "name": "preproc_arg"
+                "name": "preproc_tokens"
               },
               {
                 "type": "BLANK"

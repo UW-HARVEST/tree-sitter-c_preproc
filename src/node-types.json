@@ -880,7 +880,7 @@
         "required": false,
         "types": [
           {
-            "type": "preproc_arg",
+            "type": "preproc_tokens",
             "named": true
           }
         ]
