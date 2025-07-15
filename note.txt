@@ -2,9 +2,13 @@
 cargo build
 tree-sitter parse ~/libmcs/libm/mathf/sinhf.included.mod.preproc.c &> trace.txt
 tree-sitter parse ~/libmcs/libm/mathf/sinhf.included.preproc.c &> trace.txt
+tree-sitter parse ~/libmcs/libm/mathf/sinhf.c &> trace.txt
+tree-sitter parse ~/libmcs/libm/mathf/sinhf.included.c &> trace.txt
 tree-sitter generate
 tree-sitter build --wasm
 tree-sitter playground
+
+tree-sitter generate --report-states-for-rule -; tree-sitter build --wasm; make; tree-sitter playground
 
 #if 0                                                                      
 #elif 1                                      

@@ -127,8 +127,14 @@ module.exports = grammar({
       ),
       field('line_number', $.number_literal),
       optional(field('filename', $.string_literal)),
-      repeat($.number_literal),
-      token(/\r?\n/),
+      choice(
+        seq(
+          field('flag', $.number_literal),
+          repeat($.number_literal),
+          token(/\r?\n/),
+        ),
+        token(/\r?\n/),
+      ),
     ),
 
     preproc_eval: $ => seq(
