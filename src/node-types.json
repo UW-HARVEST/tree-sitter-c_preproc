@@ -1478,6 +1478,16 @@
           }
         ]
       },
+      "flag": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "number_literal",
+            "named": true
+          }
+        ]
+      },
       "line_number": {
         "multiple": false,
         "required": true,
@@ -1767,17 +1777,20 @@
   {
     "type": "string_literal",
     "named": true,
-    "fields": {
-      "content": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "string_content",
-            "named": true
-          }
-        ]
-      }
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "escape_sequence",
+          "named": true
+        },
+        {
+          "type": "string_content",
+          "named": true
+        }
+      ]
     }
   },
   {
