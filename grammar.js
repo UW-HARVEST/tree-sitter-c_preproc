@@ -331,10 +331,12 @@ module.exports = grammar({
 
     string_literal: $ => seq(
       choice('L"', 'u"', 'U"', 'u8"', '"'),
-      repeat(choice(
-        alias(token.immediate(prec(1, /[^\\"\n]+/)), $.string_content),
-        $.escape_sequence,
-      )),
+      field('content',
+        repeat(choice(
+          alias(token.immediate(prec(1, /[^\\"\n]+/)), $.string_content),
+          $.escape_sequence,
+        ))
+      ),
       '"',
     ),
 
