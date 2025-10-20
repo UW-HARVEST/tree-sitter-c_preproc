@@ -107,7 +107,10 @@ module.exports = grammar({
       token(/\r?\n/),
     ),
 
-    variadic_parameter: _ => '...',
+    variadic_parameter: $ => choice(
+      '...',
+      seq($.identifier, '...'),
+    ),
 
     preproc_params: $ => seq(
       token.immediate('('),
